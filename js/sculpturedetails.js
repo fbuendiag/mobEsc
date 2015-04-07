@@ -1,16 +1,19 @@
 $('#detailsPage').live('pageshow', function(event) {
 	var id = getUrlVars()["id"];
-	$.getJSON(serviceURL + 'getemployee.php?id='+id, displayEmployee);
+	$.getJSON(serviceURL + 'getsculpture.php?id='+id, displayEmployee);
+	//alert("Pasa"+id);
 });
 
 function displayEmployee(data) {
 	var employee = data.item;
+	//alert(employee);
 	console.log(employee);
-	$('#employeePic').attr('src', 'pics/' + employee.picture);
-	$('#fullName').text(employee.firstName + ' ' + employee.lastName);
-	$('#employeeTitle').text(employee.title);
-	$('#city').text(employee.city);
-	console.log(employee.officePhone);
+	console.log(employee.id);
+	$('#employeePic').attr('src', 'pics/' + employee.id +'.jpg');
+	$('#fullName').text(employee.name);
+	$('#employeeTitle').text(employee.name);
+	$('#city').text(employee.address);
+	console.log(employee.name);
 	if (employee.managerId>0) {
 		$('#actionList').append('<li><a href="employeedetails.html?id=' + employee.managerId + '"><h3>View Manager</h3>' +
 				'<p>' + employee.managerFirstName + ' ' + employee.managerLastName + '</p></a></li>');
